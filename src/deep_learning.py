@@ -28,9 +28,13 @@ if __name__ == '__main__':
     (X_train, y_train), (X_test, y_test) = mnist.load_data()
     X_train = X_train.reshape(X_train.shape[0], 28, 28, 1)
     X_test = X_test.reshape(X_test.shape[0], 28, 28, 1)
-    y_train = np_utils.to_categorical(y_train, 10)
-    y_test = np_utils.to_categorical(y_test,10)
 
+    #y_train = np_utils.to_categorical(y_train, 10)
+    #y_test = np_utils.to_categorical(y_test,10)
+    from sklearn.preprocessing import OneHotEncoder
+    onehotencoder = OneHotEncoder(categorical_features=[0])
+    x = onehotencoder.fit_transform(y_test).toarray()
+    print(x)
 
     # # import tensorflow.compat.v1 as tf
     # # tf.disable_v2_behavior()
